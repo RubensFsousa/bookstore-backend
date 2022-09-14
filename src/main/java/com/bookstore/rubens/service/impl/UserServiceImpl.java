@@ -1,7 +1,7 @@
 package com.bookstore.rubens.service.impl;
 
 import com.bookstore.rubens.exception.IdFoundException;
-import com.bookstore.rubens.model.Mapper.UserMapper;
+import com.bookstore.rubens.model.validations.Mapper.UserMapper;
 import com.bookstore.rubens.exception.BusinessException;
 import com.bookstore.rubens.model.UserModel;
 import com.bookstore.rubens.io.request.UserRequest;
@@ -23,7 +23,6 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @Autowired
     private final UserRepository userRepository;
 
     private final UserMapper userMapper;
@@ -40,6 +39,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public Page<UserResponse> getAll(Pageable pageable){
         return userRepository.findAll(pageable).map(userMapper::toUserResponse);
+    }
+
+    @Override
+    public UserResponse getById(Long id) {
+        return userRepository.findById(id).map(userMapper::toUserResponse).orElseThrow(() -> new IdFoundException(id));
     }
 
     @Override
@@ -65,12 +69,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserResponse getById(Long id) {
-        return userRepository.findById(id).map(userMapper::toUserResponse).orElseThrow(() -> new IdFoundException(id));
-    }
-
-    @Override
     public void deleteById(Long id) {
+        userValidator.validateRelationship(id);
         userRepository.deleteById(id);
     }
 }

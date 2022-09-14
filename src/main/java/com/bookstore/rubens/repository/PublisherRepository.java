@@ -9,7 +9,5 @@ import java.util.Optional;
 @Repository
 public interface PublisherRepository extends JpaRepository<PublisherModel, Long> {
 
-    boolean existsByName(String name);
-    Optional<PublisherModel> findByName(String publisherName);
-
+    Optional<PublisherModel> findByName(String name);
 }

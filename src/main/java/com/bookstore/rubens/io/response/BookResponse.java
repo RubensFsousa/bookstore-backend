@@ -23,6 +23,6 @@ public class BookResponse {
 
     private Integer amount;
 
-    private Long publisher;
+    private Long publisherId;
 
 }

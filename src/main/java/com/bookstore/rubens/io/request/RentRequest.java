@@ -22,9 +22,9 @@ public class RentRequest {
     private LocalDate rentPredict;
 
     @NotNull
-    private Long book;
+    private Long bookId;
 
     @NotNull
-    private Long user;
+    private Long userId;
 }
 

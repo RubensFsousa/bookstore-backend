@@ -1,4 +1,4 @@
-package com.bookstore.rubens.model.Mapper;
+package com.bookstore.rubens.model.validations.Mapper;
 
 
 import com.bookstore.rubens.model.RentModel;

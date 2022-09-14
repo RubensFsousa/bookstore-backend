@@ -1,4 +1,4 @@
-package com.bookstore.rubens.model.Mapper;
+package com.bookstore.rubens.model.validations.Mapper;
 
 
 import com.bookstore.rubens.model.UserModel;
@@ -14,13 +14,8 @@ public class UserMapper {
 
     private final ModelMapper mapper = new ModelMapper();
 
-
     public UserModel toUserModel(UserRequest rent){
         return mapper.map(rent, UserModel.class);
-    }
-
-    public UserRequest toLogsRequest(UserModel rent){
-        return mapper.map(rent, UserRequest.class);
     }
 
     public UserResponse toUserResponse(UserModel rent){

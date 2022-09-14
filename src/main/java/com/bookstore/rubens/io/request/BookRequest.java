@@ -33,5 +33,5 @@ public class BookRequest {
     private LocalDate launchDate;
 
     @NotNull
-    private Long publisher;
+    private Long publisherId;
 }

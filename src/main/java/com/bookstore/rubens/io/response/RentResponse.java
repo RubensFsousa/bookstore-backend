@@ -25,7 +25,7 @@ public class RentResponse {
 
     private StatusRent status;
 
-    private Long book;
+    private Long bookId;
 
-    private Long user;
+    private Long userId;
 }
