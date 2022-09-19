@@ -1,28 +1,22 @@
-package com.bookstore.rubens.io.response;
+package com.bookstore.rubens.model.io.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class BookResponse {
+public class UserResponse {
 
     private Long id;
 
     private String name;
 
-    private String author;
+    private String city;
 
-    private LocalDate launchDate;
-
-    private Integer amount;
-
-    private Long publisherId;
-
+    private String address;
 }

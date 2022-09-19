@@ -1,8 +1,8 @@
 package com.bookstore.rubens.controller;
 
-import com.bookstore.rubens.io.request.BookRequest;
-import com.bookstore.rubens.io.response.BookResponse;
-import com.bookstore.rubens.model.validations.Mapper.BookMapper;
+import com.bookstore.rubens.model.io.request.BookRequest;
+import com.bookstore.rubens.model.io.response.BookResponse;
+import com.bookstore.rubens.model.Mapper.BookMapper;
 import com.bookstore.rubens.service.BookService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class BookController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<BookResponse>> getAll(Pageable pageable){
+    public ResponseEntity<Page<BookResponse>> getAllBooks(Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(bookService.getAll(pageable));
     }
 

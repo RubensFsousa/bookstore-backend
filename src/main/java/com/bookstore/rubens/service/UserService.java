@@ -1,7 +1,7 @@
 package com.bookstore.rubens.service;
 
-import com.bookstore.rubens.io.request.UserRequest;
-import com.bookstore.rubens.io.response.UserResponse;
+import com.bookstore.rubens.model.io.request.UserRequest;
+import com.bookstore.rubens.model.io.response.UserResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

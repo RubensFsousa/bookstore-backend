@@ -1,8 +1,8 @@
 package com.bookstore.rubens.controller;
 
-import com.bookstore.rubens.io.request.PublisherRequest;
-import com.bookstore.rubens.io.response.PublisherResponse;
-import com.bookstore.rubens.model.validations.Mapper.PublisherMapper;
+import com.bookstore.rubens.model.io.request.PublisherRequest;
+import com.bookstore.rubens.model.io.response.PublisherResponse;
+import com.bookstore.rubens.model.Mapper.PublisherMapper;
 import com.bookstore.rubens.service.PublisherService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;
@@ -22,8 +22,10 @@ import javax.validation.Valid;
 @RequestMapping("/Publisher")
 public class PublisherController {
 
+    @Autowired
     private PublisherService publisherService;
 
+    @Autowired
     private PublisherMapper publisherMapper;
 
     @PostMapping
@@ -33,7 +35,7 @@ public class PublisherController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<PublisherResponse>> getAll(Pageable pageable) {
+    public ResponseEntity<Page<PublisherResponse>> getAllPublishers(Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(publisherService.getAll(pageable));
     }
 

@@ -1,10 +1,9 @@
 package com.bookstore.rubens.controller;
 
-import com.bookstore.rubens.io.request.UserRequest;
-import com.bookstore.rubens.io.response.UserResponse;
-import com.bookstore.rubens.model.validations.Mapper.UserMapper;
+import com.bookstore.rubens.model.io.request.UserRequest;
+import com.bookstore.rubens.model.io.response.UserResponse;
+import com.bookstore.rubens.model.Mapper.UserMapper;
 import com.bookstore.rubens.service.UserService;
-import com.bookstore.rubens.service.impl.UserServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -21,18 +20,20 @@ import javax.validation.Valid;
 @RequestMapping("/users")
 public class UserController {
 
+    @Autowired
     private UserService userService;
 
+    @Autowired
     private UserMapper userMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public void createUser(@Valid UserRequest userRequest) {
+    public void createUser(@RequestBody @Valid UserRequest userRequest) {
         userService.create(userRequest);
     }
 
     @GetMapping
-    public ResponseEntity<Page<UserResponse>> getAll(Pageable pageable){
+    public ResponseEntity<Page<UserResponse>> getAllUsers(Pageable pageable){
         return ResponseEntity.status(HttpStatus.OK).body(userService.getAll(pageable));
     }
 

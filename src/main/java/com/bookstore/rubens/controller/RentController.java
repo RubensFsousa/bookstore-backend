@@ -1,11 +1,11 @@
 package com.bookstore.rubens.controller;
 
-import com.bookstore.rubens.io.request.RentRequest;
-import com.bookstore.rubens.io.response.RentResponse;
-import com.bookstore.rubens.model.validations.Mapper.RentMapper;
+import com.bookstore.rubens.model.io.request.RentRequest;
+import com.bookstore.rubens.model.io.response.RentResponse;
+import com.bookstore.rubens.model.Mapper.RentMapper;
 import com.bookstore.rubens.service.RentService;
 import io.swagger.annotations.Api;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,14 +17,16 @@ import javax.validation.Valid;
 
 
 @RestController
-@AllArgsConstructor
+@RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @Api(value = "API REST BOOKS")
 @RequestMapping("/Rent")
 public class RentController {
 
+    @Autowired
     private RentService rentService;
 
+    @Autowired
     private RentMapper rentMapper;
 
     @PostMapping
@@ -34,7 +36,7 @@ public class RentController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<RentResponse>> getAll(Pageable pageable) {
+    public ResponseEntity<Page<RentResponse>> getAllRents(Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(rentService.getAll(pageable));
     }
 

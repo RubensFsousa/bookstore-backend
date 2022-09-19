@@ -1,11 +1,11 @@
 package com.bookstore.rubens.service.impl;
 
 import com.bookstore.rubens.exception.IdFoundException;
-import com.bookstore.rubens.io.request.PublisherRequest;
-import com.bookstore.rubens.model.validations.Mapper.PublisherMapper;
+import com.bookstore.rubens.model.io.request.PublisherRequest;
+import com.bookstore.rubens.model.Mapper.PublisherMapper;
 import com.bookstore.rubens.exception.BusinessException;
 import com.bookstore.rubens.model.PublisherModel;
-import com.bookstore.rubens.io.response.PublisherResponse;
+import com.bookstore.rubens.model.io.response.PublisherResponse;
 import com.bookstore.rubens.model.validations.PublisherModelValidator;
 import com.bookstore.rubens.repository.PublisherRepository;
 import com.bookstore.rubens.service.PublisherService;
@@ -40,8 +40,7 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public Page<PublisherResponse> getAll(Pageable pageable) {
-        return publisherRepository.findAll(pageable)
-                .map(publisherMapper::toPublisherResponse);
+        return publisherRepository.findAll(pageable).map(publisherMapper::toPublisherResponse);
     }
 
     public PublisherResponse getById(Long id) {

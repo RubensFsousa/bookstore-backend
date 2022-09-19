@@ -36,7 +36,7 @@ public class RentModel {
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate predictDate;
 
-    @Column(nullable = false)
+    @Column
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate devolutionDate;
 

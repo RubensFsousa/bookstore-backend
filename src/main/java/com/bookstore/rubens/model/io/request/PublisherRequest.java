@@ -1,4 +1,4 @@
-package com.bookstore.rubens.io.request;
+package com.bookstore.rubens.model.io.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,12 +8,11 @@ import lombok.Setter;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserRequest {
+public class PublisherRequest {
 
     @NotBlank
     @Size(min = 3, max = 30)
@@ -22,8 +21,4 @@ public class UserRequest {
     @NotBlank
     @Size(min = 3, max = 30)
     private String city;
-
-    @NotBlank
-    @Size(min = 3, max = 40)
-    private String address;
 }

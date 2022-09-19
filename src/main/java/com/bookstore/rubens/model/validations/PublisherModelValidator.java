@@ -2,7 +2,7 @@ package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
 import com.bookstore.rubens.exception.IdFoundException;
-import com.bookstore.rubens.io.request.PublisherRequest;
+import com.bookstore.rubens.model.io.request.PublisherRequest;
 import com.bookstore.rubens.model.BookModel;
 import com.bookstore.rubens.repository.BookRepository;
 import com.bookstore.rubens.repository.PublisherRepository;

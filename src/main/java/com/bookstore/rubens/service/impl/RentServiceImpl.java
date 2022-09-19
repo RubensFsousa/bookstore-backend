@@ -1,14 +1,14 @@
 package com.bookstore.rubens.service.impl;
 
 import com.bookstore.rubens.exception.IdFoundException;
-import com.bookstore.rubens.io.request.RentRequest;
-import com.bookstore.rubens.model.validations.Mapper.RentMapper;
+import com.bookstore.rubens.model.io.request.RentRequest;
+import com.bookstore.rubens.model.Mapper.RentMapper;
 import com.bookstore.rubens.exception.BusinessException;
 import com.bookstore.rubens.model.BookModel;
 import com.bookstore.rubens.model.Enum.StatusRent;
 import com.bookstore.rubens.model.RentModel;
 import com.bookstore.rubens.model.UserModel;
-import com.bookstore.rubens.io.response.RentResponse;
+import com.bookstore.rubens.model.io.response.RentResponse;
 import com.bookstore.rubens.model.validations.RentModelValidator;
 import com.bookstore.rubens.repository.BookRepository;
 import com.bookstore.rubens.repository.RentRepository;
@@ -45,10 +45,10 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public void create(RentRequest rentRequest) {
-        BookModel book = (bookRepository.getById(rentRequest.getBookId()));
+        BookModel book = bookRepository.getById(rentRequest.getBookId());
 
         rentValidator.validateForCreate(rentRequest);
-        rentValidator.validateBookRent(rentMapper.toRentModel(rentRequest).getBook());
+        rentValidator.validateBookRent(book);
         bookRepository.save(book).setAmount(book.getAmount() -1);
         rentRepository.save(rentMapper.toRentModel(rentRequest));
     }

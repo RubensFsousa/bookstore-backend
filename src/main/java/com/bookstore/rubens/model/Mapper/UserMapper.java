@@ -1,14 +1,14 @@
-package com.bookstore.rubens.model.validations.Mapper;
+package com.bookstore.rubens.model.Mapper;
 
 
+import com.bookstore.rubens.model.io.request.UserRequest;
+import com.bookstore.rubens.model.io.response.UserResponse;
 import com.bookstore.rubens.model.UserModel;
-import com.bookstore.rubens.io.request.UserRequest;
-import com.bookstore.rubens.io.response.UserResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-@Component("LogsMapper")
+@Component("UserMapper")
 @RequiredArgsConstructor
 public class UserMapper {
 
@@ -16,6 +16,10 @@ public class UserMapper {
 
     public UserModel toUserModel(UserRequest rent){
         return mapper.map(rent, UserModel.class);
+    }
+
+    public UserRequest toLogsRequest(UserModel rent){
+        return mapper.map(rent, UserRequest.class);
     }
 
     public UserResponse toUserResponse(UserModel rent){

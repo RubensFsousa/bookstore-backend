@@ -1,16 +1,15 @@
 package com.bookstore.rubens.service.impl;
 
 import com.bookstore.rubens.exception.IdFoundException;
-import com.bookstore.rubens.model.validations.Mapper.UserMapper;
+import com.bookstore.rubens.model.Mapper.UserMapper;
 import com.bookstore.rubens.exception.BusinessException;
 import com.bookstore.rubens.model.UserModel;
-import com.bookstore.rubens.io.request.UserRequest;
-import com.bookstore.rubens.io.response.UserResponse;
+import com.bookstore.rubens.model.io.request.UserRequest;
+import com.bookstore.rubens.model.io.response.UserResponse;
 import com.bookstore.rubens.model.validations.UserModelValidator;
 import com.bookstore.rubens.repository.UserRepository;
 import com.bookstore.rubens.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;

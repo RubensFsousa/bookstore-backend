@@ -1,7 +1,7 @@
 package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
-import com.bookstore.rubens.io.request.UserRequest;
+import com.bookstore.rubens.model.io.request.UserRequest;
 import com.bookstore.rubens.model.RentModel;
 import com.bookstore.rubens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;

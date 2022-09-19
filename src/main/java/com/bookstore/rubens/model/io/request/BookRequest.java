@@ -1,4 +1,4 @@
-package com.bookstore.rubens.io.request;
+package com.bookstore.rubens.model.io.request;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;

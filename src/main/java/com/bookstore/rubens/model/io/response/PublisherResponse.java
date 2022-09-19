@@ -1,4 +1,4 @@
-package com.bookstore.rubens.io.response;
+package com.bookstore.rubens.model.io.response;
 
 
 import lombok.AllArgsConstructor;

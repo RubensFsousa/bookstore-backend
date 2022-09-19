@@ -1,30 +1,31 @@
-package com.bookstore.rubens.io.request;
+package com.bookstore.rubens.model.io.response;
 
 
+import com.bookstore.rubens.model.Enum.StatusRent;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class RentRequest {
+public class RentResponse {
 
-    @NotNull
+    private Long id;
+
     private LocalDate rentDate;
 
-    @NotNull
     private LocalDate rentPredict;
 
-    @NotNull
+    private LocalDate devolutionDate;
+
+    private StatusRent status;
+
     private Long bookId;
 
-    @NotNull
     private Long userId;
 }
-

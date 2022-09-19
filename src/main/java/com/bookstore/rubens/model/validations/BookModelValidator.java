@@ -1,7 +1,7 @@
 package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
-import com.bookstore.rubens.io.request.BookRequest;
+import com.bookstore.rubens.model.io.request.BookRequest;
 import com.bookstore.rubens.model.RentModel;
 import com.bookstore.rubens.repository.BookRepository;
 import com.bookstore.rubens.repository.PublisherRepository;
