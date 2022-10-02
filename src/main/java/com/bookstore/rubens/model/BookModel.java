@@ -28,7 +28,6 @@ public class BookModel {
     private String author;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate launchDate;
 
     @Column(nullable = false)

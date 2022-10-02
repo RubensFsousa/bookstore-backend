@@ -11,13 +11,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
-@RequestMapping("/users")
+@RequestMapping("/Users")
 public class UserController {
 
     @Autowired
@@ -38,7 +37,7 @@ public class UserController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<UserResponse> getOne(@PathVariable("id") Long id){
+    public ResponseEntity<UserResponse> getOneUser(@PathVariable("id") Long id){
         return new ResponseEntity<>(userService.getById(id), HttpStatus.OK);
     }
 
@@ -52,4 +51,5 @@ public class UserController {
     public void deleteUser(@PathVariable("id") Long id){
         userService.deleteById(id);
     }
+
 }

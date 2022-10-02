@@ -68,7 +68,7 @@ public class RentModelValidator {
     public void validateForDelete(Long id) {
         StatusRent status = rentRepository.findById(id).get().getStatus();
 
-        if (status.equals(StatusRent.IN_PROGRESS)){
+        if (status.equals(StatusRent.LENDO)){
             throw new BusinessException("this rent is in progress");
         }
     }

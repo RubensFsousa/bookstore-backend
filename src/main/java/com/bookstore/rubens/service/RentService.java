@@ -15,5 +15,7 @@ public interface RentService {
 
     RentResponse update(Long id, RentRequest rentRequest);
 
+    void devolution(Long id);
+
     void deleteById(Long id);
 }

@@ -21,6 +21,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
 import java.util.Optional;
 
 @Service
@@ -50,7 +51,10 @@ public class RentServiceImpl implements RentService {
         rentValidator.validateForCreate(rentRequest);
         rentValidator.validateBookRent(book);
         bookRepository.save(book).setAmount(book.getAmount() -1);
-        rentRepository.save(rentMapper.toRentModel(rentRequest));
+        RentModel rentModel = rentMapper.toRentModel(rentRequest);
+        rentModel.setStatus(StatusRent.LENDO);
+        rentRepository.save(rentModel);
+
     }
 
     @Override
@@ -71,7 +75,7 @@ public class RentServiceImpl implements RentService {
 
         if (optBook.isPresent()){
             if (optLogin.isPresent()){
-                if (optRent.get().getStatus().equals(StatusRent.IN_PROGRESS)){
+                if (optRent.get().getStatus().equals(StatusRent.LENDO)){
                     throw new BusinessException("This rent has already been made and the book has not been delivered");
                 }
             }
@@ -85,6 +89,35 @@ public class RentServiceImpl implements RentService {
         rentRepository.save(rentModel);
 
         return rentMapper.toRentResponse(rentModel);
+    }
+
+    @Override
+    public void devolution(Long id){
+        RentModel rentModel = rentRepository.getById(id);
+        Optional<RentModel> rent = rentRepository.findById(id);
+
+        if (rent.isEmpty()){
+            throw new IdFoundException(id);
+        }
+
+        if (rent.get().getStatus().equals(StatusRent.ATRASADO)) {
+            throw new BusinessException("this book has already been delivered");
+        }
+
+        if (rent.get().getStatus().equals(StatusRent.ENTREGUE)) {
+            throw new BusinessException("this book has already been delivered");
+        }
+
+        if (rent.get().getPredictDate().isBefore(LocalDate.now())) {
+            rentModel.setStatus(StatusRent.ATRASADO);
+        }
+
+        else {
+            rentModel.setStatus(StatusRent.ENTREGUE);
+        }
+        rentModel.setDevolutionDate(LocalDate.now());
+
+        rentRepository.save(rentModel);
     }
 
     @Override

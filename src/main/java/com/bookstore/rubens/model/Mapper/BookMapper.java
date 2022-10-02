@@ -6,6 +6,7 @@ import com.bookstore.rubens.model.BookModel;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
 
 
@@ -16,12 +17,17 @@ public class BookMapper {
     private final ModelMapper mapper = new ModelMapper();
 
     public BookModel toBooksModel(BookRequest book){
-        mapper.addMappings(new PropertyMap<BookRequest, BookModel>() {
-            @Override
-            protected void configure(){
-                skip(destination.getId());
-            }
-        });
+
+        TypeMap<BookRequest, BookModel> typeMap = mapper.getTypeMap(BookRequest.class, BookModel.class);
+
+        if (typeMap == null) {
+            mapper.addMappings(new PropertyMap<BookRequest, BookModel>() {
+                @Override
+                protected void configure() {
+                    skip(destination.getId());
+                }
+            });
+        }
         return mapper.map(book, BookModel.class);
     }
 

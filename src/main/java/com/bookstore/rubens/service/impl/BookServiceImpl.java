@@ -6,15 +6,14 @@ import com.bookstore.rubens.model.io.request.BookRequest;
 import com.bookstore.rubens.model.io.response.BookResponse;
 import com.bookstore.rubens.model.BookModel;
 import com.bookstore.rubens.model.Mapper.BookMapper;
+import com.bookstore.rubens.service.BookService;
 import com.bookstore.rubens.model.validations.BookModelValidator;
 import com.bookstore.rubens.repository.BookRepository;
-import com.bookstore.rubens.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.Optional;
 
@@ -35,7 +34,7 @@ public class BookServiceImpl implements BookService {
 
     @Override
     public void create(BookRequest bookRequest) {
-        //bookValidator.validateForCreate(bookRequest);
+        bookValidator.validateForCreate(bookRequest);
         bookRepository.save(bookMapper.toBooksModel(bookRequest));
     }
 

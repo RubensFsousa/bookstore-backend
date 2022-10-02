@@ -7,6 +7,7 @@ import com.bookstore.rubens.model.RentModel;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
+import org.modelmapper.TypeMap;
 import org.springframework.stereotype.Component;
 
 @Component("RentMapper")
@@ -16,14 +17,20 @@ public class RentMapper {
     private final ModelMapper mapper = new ModelMapper();
 
     public RentModel toRentModel(RentRequest rent){
-        mapper.addMappings(new PropertyMap<RentRequest, RentModel>() {
-            @Override
-            protected void configure() {
-                skip(destination.getId());
-            }
-        });
+
+        TypeMap<RentRequest, RentModel> typeMap = mapper.getTypeMap(RentRequest.class, RentModel.class);
+
+        if (typeMap == null) {
+            mapper.addMappings(new PropertyMap<RentRequest, RentModel>() {
+                @Override
+                protected void configure() {
+                    skip(destination.getId());
+                }
+            });
+        }
         return mapper.map(rent, RentModel.class);
     }
+
 
     public RentRequest toRentRequest(RentModel rent){
         return mapper.map(rent, RentRequest.class);
@@ -32,6 +39,5 @@ public class RentMapper {
     public RentResponse toRentResponse(RentModel rent){
         return mapper.map(rent, RentResponse.class);
     }
-
 
 }

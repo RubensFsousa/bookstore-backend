@@ -40,7 +40,7 @@ public class PublisherController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<PublisherResponse> getOne(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<PublisherResponse> getOnePublisher(@PathVariable(value = "id") Long id) {
         return new ResponseEntity<>(publisherService.getById(id), HttpStatus.OK);
     }
 

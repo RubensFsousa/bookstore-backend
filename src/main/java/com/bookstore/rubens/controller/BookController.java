@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
@@ -41,7 +40,7 @@ public class BookController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<BookResponse> getOne(@PathVariable(value = "id")Long id){
+    public ResponseEntity<BookResponse> getOneBook(@PathVariable(value = "id")Long id){
         return new ResponseEntity<>(bookService.getById(id), HttpStatus.OK);
     }
 

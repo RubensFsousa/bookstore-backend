@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 
-
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
@@ -41,13 +40,19 @@ public class RentController {
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<RentResponse> getONE(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<RentResponse> getONERent(@PathVariable(value = "id") Long id) {
         return new ResponseEntity<>(rentService.getById(id), HttpStatus.OK);
     }
 
     @PutMapping(value = "/{id}")
     public ResponseEntity<RentResponse> updateRent(@PathVariable(value = "id") Long id, @RequestBody @Valid RentRequest rentRequest) {
         return ResponseEntity.status(HttpStatus.OK).body(rentService.update(id, rentRequest));
+    }
+
+    @PutMapping(value = "Devolution/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public void devolution(@PathVariable(value = "id") Long id) {
+        rentService.devolution(id);
     }
 
     @DeleteMapping(value = "/{id}")
