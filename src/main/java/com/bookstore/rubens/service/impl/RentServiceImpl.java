@@ -95,6 +95,8 @@ public class RentServiceImpl implements RentService {
     public void devolution(Long id){
         RentModel rentModel = rentRepository.getById(id);
         Optional<RentModel> rent = rentRepository.findById(id);
+        Integer copies = rentModel.getBook().getAmount();
+
 
         if (rent.isEmpty()){
             throw new IdFoundException(id);
@@ -116,6 +118,7 @@ public class RentServiceImpl implements RentService {
             rentModel.setStatus(StatusRent.ENTREGUE);
         }
         rentModel.setDevolutionDate(LocalDate.now());
+        rentModel.getBook().setAmount(copies + 1);
 
         rentRepository.save(rentModel);
     }

@@ -1,7 +1,9 @@
 package com.bookstore.rubens.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.bookstore.rubens.model.Enum.StatusRent;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,9 +24,11 @@ public class RentModel {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonBackReference
     @ManyToOne
     private BookModel book;
 
+    @JsonBackReference
     @ManyToOne
     private UserModel user;
 

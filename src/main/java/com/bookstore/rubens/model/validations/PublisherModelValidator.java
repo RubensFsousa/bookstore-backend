@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -27,6 +28,10 @@ public class PublisherModelValidator {
 
     }
 
+    public void validateForDelete(Long id) {
+        validateRelationship(id);
+    }
+
     private void validateName(String name) {
         publisherRepository.findByName(name).ifPresent(publisherModel -> {
             throw new BusinessException("Publisher already registered");
@@ -40,11 +45,11 @@ public class PublisherModelValidator {
     }
 
     public void validateRelationship(Long id) {
-        List<BookModel> bookModel = publisherRepository.findById(id).get().getBooks();
+        Optional<BookModel> book = bookRepository.findByPublisherId(id);
 
-        if (!bookModel.isEmpty()){
+        if (!book.isEmpty()) {
             throw new BusinessException("there are books registered with this publisher");
         }
-    }
 
+    }
 }

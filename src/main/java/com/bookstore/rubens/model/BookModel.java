@@ -1,6 +1,8 @@
 package com.bookstore.rubens.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -33,8 +35,11 @@ public class BookModel {
     @Column(nullable = false)
     private Integer amount;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<RentModel> rents;
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "publisher_id")
     private PublisherModel publisher;

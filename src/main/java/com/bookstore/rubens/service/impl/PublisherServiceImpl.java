@@ -6,6 +6,7 @@ import com.bookstore.rubens.model.Mapper.PublisherMapper;
 import com.bookstore.rubens.exception.BusinessException;
 import com.bookstore.rubens.model.PublisherModel;
 import com.bookstore.rubens.model.io.response.PublisherResponse;
+import com.bookstore.rubens.repository.BookRepository;
 import com.bookstore.rubens.service.PublisherService;
 import com.bookstore.rubens.model.validations.PublisherModelValidator;
 import com.bookstore.rubens.repository.PublisherRepository;
@@ -31,6 +32,7 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Autowired
     private final PublisherModelValidator publisherValidator;
+
 
     @Override
     public void create(PublisherRequest publisherRequest) {
@@ -70,7 +72,7 @@ public class PublisherServiceImpl implements PublisherService {
 
     @Override
     public void deleteById(Long id) {
-        publisherValidator.validateRelationship(id);
+        publisherValidator.validateForDelete(id);
         publisherRepository.deleteById(id);
     }
 }

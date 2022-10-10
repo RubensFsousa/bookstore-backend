@@ -1,10 +1,13 @@
 package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
+import com.bookstore.rubens.model.BookModel;
+import com.bookstore.rubens.model.Enum.StatusRent;
 import com.bookstore.rubens.model.io.request.BookRequest;
 import com.bookstore.rubens.model.RentModel;
 import com.bookstore.rubens.repository.BookRepository;
 import com.bookstore.rubens.repository.PublisherRepository;
+import com.bookstore.rubens.repository.RentRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,6 +20,10 @@ public class BookModelValidator {
 
     @Autowired
     private BookRepository bookRepository;
+
+    @Autowired
+    private RentRepository rentRepository;
+
     @Autowired
     private PublisherRepository publisherRepository;
 
@@ -39,11 +46,12 @@ public class BookModelValidator {
     }
 
     public void validateRelationship(Long id) {
-        List<RentModel> rentModel = bookRepository.findById(id).get().getRents();
+        List<RentModel> rents = bookRepository.findById(id).get().getRents();
 
-        if (!rentModel.isEmpty()){
-            throw new BusinessException("there are rentals registered with this book");
+        for (RentModel rentModel : rents) {
+            if (rentModel.getStatus().equals(StatusRent.LENDO)) {
+                throw new BusinessException("there are rentals registered with this book");
+            }
         }
     }
-
 }

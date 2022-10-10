@@ -1,11 +1,13 @@
 package com.bookstore.rubens.model.io.response;
 
+import com.bookstore.rubens.model.PublisherModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -23,6 +25,6 @@ public class BookResponse {
 
     private Integer amount;
 
-    private Long publisherId;
+    private PublisherModel publisher;
 
 }
