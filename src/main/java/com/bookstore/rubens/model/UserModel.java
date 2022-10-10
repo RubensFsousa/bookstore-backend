@@ -1,5 +1,6 @@
 package com.bookstore.rubens.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,6 +28,7 @@ public class UserModel {
     @Column(nullable = false)
     private String address;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "user",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<RentModel> rents;
 }

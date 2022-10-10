@@ -1,13 +1,16 @@
-package com.bookstore.rubens.io.response;
+package com.bookstore.rubens.model.io.response;
 
 
+import com.bookstore.rubens.model.BookModel;
 import com.bookstore.rubens.model.Enum.StatusRent;
+import com.bookstore.rubens.model.UserModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -25,7 +28,7 @@ public class RentResponse {
 
     private StatusRent status;
 
-    private Long book;
+    private BookModel book;
 
-    private Long user;
+    private UserModel user;
 }

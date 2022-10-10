@@ -1,19 +1,15 @@
 package com.bookstore.rubens.model.Mapper;
 
+import com.bookstore.rubens.model.io.request.PublisherRequest;
+import com.bookstore.rubens.model.io.response.PublisherResponse;
 import com.bookstore.rubens.model.PublisherModel;
-import com.bookstore.rubens.io.request.PublisherRequest;
-import com.bookstore.rubens.io.response.PublisherResponse;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component("PublisherMapper")
 @RequiredArgsConstructor
 public class PublisherMapper {
-
     private final ModelMapper mapper = new ModelMapper();
 
 
@@ -29,11 +25,5 @@ public class PublisherMapper {
         return mapper.map(publisher, PublisherResponse.class);
     }
 
-    public List<PublisherResponse> toPublisherList(List<PublisherModel> publishes){
-        return publishes.stream()
-                .map(this::toPublisherResponse)
-                .collect(Collectors.toList());
-    }
 
 }
-

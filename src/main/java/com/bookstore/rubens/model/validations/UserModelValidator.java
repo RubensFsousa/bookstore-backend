@@ -1,10 +1,13 @@
 package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
-import com.bookstore.rubens.io.request.UserRequest;
+import com.bookstore.rubens.model.io.request.UserRequest;
+import com.bookstore.rubens.model.RentModel;
 import com.bookstore.rubens.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import java.util.List;
 
 @Component
 public class UserModelValidator {
@@ -21,4 +24,13 @@ public class UserModelValidator {
             throw new BusinessException("User already registered with this name");
         });
     }
+
+    public void validateRelationship(Long id) {
+        List<RentModel> rentModel = userRepository.findById(id).get().getRents();
+
+        if (!rentModel.isEmpty()) {
+            throw new BusinessException("this user has a rental in progress");
+        }
+    }
+
 }

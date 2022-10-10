@@ -1,6 +1,7 @@
-package com.bookstore.rubens.io.request;
+package com.bookstore.rubens.model.io.request;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,15 +17,17 @@ import java.time.LocalDate;
 public class RentRequest {
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate rentDate;
 
     @NotNull
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate rentPredict;
 
     @NotNull
-    private Long book;
+    private Long bookId;
 
     @NotNull
-    private Long user;
+    private Long userId;
 }
 

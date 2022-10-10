@@ -1,6 +1,8 @@
 package com.bookstore.rubens.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,14 +30,16 @@ public class BookModel {
     private String author;
 
     @Column(nullable = false)
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd/MM/yyyy")
     private LocalDate launchDate;
 
     @Column(nullable = false)
     private Integer amount;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<RentModel> rents;
+
+    @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "publisher_id")
     private PublisherModel publisher;

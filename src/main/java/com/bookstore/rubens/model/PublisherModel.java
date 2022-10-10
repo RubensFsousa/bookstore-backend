@@ -1,6 +1,7 @@
 package com.bookstore.rubens.model;
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -25,6 +26,7 @@ public class PublisherModel {
     @Column(nullable = false)
     private String city;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "publisher",cascade = CascadeType.ALL, fetch =FetchType.LAZY )
     private List<BookModel> books;
 }

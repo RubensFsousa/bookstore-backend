@@ -1,16 +1,16 @@
-package com.bookstore.rubens.io.response;
-
+package com.bookstore.rubens.model.io.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class PublisherResponse {
+public class UserResponse {
 
     private Long id;
 
@@ -18,5 +18,5 @@ public class PublisherResponse {
 
     private String city;
 
-
+    private String address;
 }
