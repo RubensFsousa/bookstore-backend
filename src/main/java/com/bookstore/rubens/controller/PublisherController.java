@@ -19,7 +19,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 @CrossOrigin(origins = "*")
 @Api(value = "API REST BOOKS")
-@RequestMapping("/Publisher")
+@RequestMapping("/publisher")
 public class PublisherController {
 
     @Autowired
