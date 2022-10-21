@@ -1,8 +1,8 @@
 package com.bookstore.rubens.controller;
 
+import com.bookstore.rubens.model.Mapper.UserMapper;
 import com.bookstore.rubens.model.io.request.UserRequest;
 import com.bookstore.rubens.model.io.response.UserResponse;
-import com.bookstore.rubens.model.Mapper.UserMapper;
 import com.bookstore.rubens.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
 import javax.validation.Valid;
 
 @RestController

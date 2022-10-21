@@ -1,8 +1,8 @@
 package com.bookstore.rubens.controller;
 
+import com.bookstore.rubens.model.Mapper.BookMapper;
 import com.bookstore.rubens.model.io.request.BookRequest;
 import com.bookstore.rubens.model.io.response.BookResponse;
-import com.bookstore.rubens.model.Mapper.BookMapper;
 import com.bookstore.rubens.service.BookService;
 import io.swagger.annotations.Api;
 import lombok.RequiredArgsConstructor;

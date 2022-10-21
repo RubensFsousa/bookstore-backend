@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -47,10 +48,11 @@ public class RentServiceImpl implements RentService {
     @Override
     public void create(RentRequest rentRequest) {
         BookModel book = bookRepository.getById(rentRequest.getBookId());
-
         rentValidator.validateForCreate(rentRequest);
         rentValidator.validateBookRent(book);
-        bookRepository.save(book).setAmount(book.getAmount() -1);
+        book.setLeaseQuantity(book.getLeaseQuantity() +1);
+        book.setAmount(book.getAmount() -1);
+        bookRepository.save(book);
         RentModel rentModel = rentMapper.toRentModel(rentRequest);
         rentModel.setStatus(StatusRent.LENDO);
         rentRepository.save(rentModel);
@@ -125,8 +127,13 @@ public class RentServiceImpl implements RentService {
 
     @Override
     public void deleteById(Long id) {
+        RentModel rent = rentRepository.getById(id);
+        Integer copies = rent.getBook().getLeaseQuantity();
         rentValidator.validateForDelete(id);
         rentRepository.deleteById(id);
+        rent.getBook().setLeaseQuantity(copies -1);
+
+
     }
 
 }

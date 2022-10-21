@@ -1,6 +1,8 @@
 package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
+import com.bookstore.rubens.model.RentModel;
+import com.bookstore.rubens.model.UserModel;
 import com.bookstore.rubens.model.io.request.RentRequest;
 import com.bookstore.rubens.model.BookModel;
 import com.bookstore.rubens.model.Enum.StatusRent;
@@ -12,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Component
 @RequiredArgsConstructor
@@ -33,7 +36,7 @@ public class RentModelValidator {
 
     private void validateAmount(Integer amount) {
         if (amount <= 0){
-            throw new BusinessException("There are no copies available for this book");
+            throw new BusinessException("Não existem cópias disponíveis deste livro");
         }
     }
 
@@ -46,22 +49,22 @@ public class RentModelValidator {
 
     private void validateBook(Long id) {
         if (bookRepository.findById(id).isEmpty()){
-            throw new BusinessException("Book not found");
+            throw new BusinessException("Livro não encontrado");
         }
     }
 
-    private void validateUser(Long user) {
-        if (userRepository.findById(user).isEmpty()){
-            throw new BusinessException("User not found");
+    private void validateUser(Long id) {
+        if (userRepository.findById(id).isEmpty()){
+            throw new BusinessException("Leitor não encontrado");
         }
     }
 
     private void validateDevolution(LocalDate rentDate, LocalDate rentPredict) {
         if (rentDate.isAfter(rentPredict)){
-            throw new BusinessException("The rental date cannot be later than the return date");
+            throw new BusinessException("A data de aluguel não pode ser posterior à data de devolução");
         }
         if (rentDate.isAfter(LocalDate.now())){
-            throw new BusinessException("The rent must be made on the present or scheduled date");
+            throw new BusinessException("O aluguel deve ser feito na data presente ou anterior");
         }
     }
 
@@ -69,7 +72,7 @@ public class RentModelValidator {
         StatusRent status = rentRepository.findById(id).get().getStatus();
 
         if (status.equals(StatusRent.LENDO)){
-            throw new BusinessException("this rent is in progress");
+            throw new BusinessException("Este aluguel está em progresso");
         }
     }
 

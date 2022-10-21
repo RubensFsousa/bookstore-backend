@@ -34,7 +34,7 @@ public class PublisherModelValidator {
 
     private void validateName(String name) {
         publisherRepository.findByName(name).ifPresent(publisherModel -> {
-            throw new BusinessException("Publisher already registered");
+            throw new BusinessException("Uma editora com esse nome já foi registrada");
         });
     }
 
@@ -48,7 +48,7 @@ public class PublisherModelValidator {
         Optional<BookModel> book = bookRepository.findByPublisherId(id);
 
         if (!book.isEmpty()) {
-            throw new BusinessException("there are books registered with this publisher");
+            throw new BusinessException("Existem livros registrados com essa editora");
         }
 
     }

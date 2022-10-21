@@ -23,7 +23,7 @@ public class UserModelValidator {
 
     private void validateName(String name) {
         userRepository.findByName(name).ifPresent(userModel -> {
-            throw new BusinessException("User already registered with this name");
+            throw new BusinessException("Um leitor já foi registrado com esse nome");
         });
     }
 
@@ -31,7 +31,7 @@ public class UserModelValidator {
         List<RentModel> rentModel = userRepository.findById(id).get().getRents();
 
         if (!rentModel.isEmpty()) {
-            throw new BusinessException("this user has a rental in progress");
+            throw new BusinessException("Este leitor tem um aluguel em andamento");
         }
     }
 

@@ -1,10 +1,9 @@
 package com.bookstore.rubens.model.validations;
 
 import com.bookstore.rubens.exception.BusinessException;
-import com.bookstore.rubens.model.BookModel;
 import com.bookstore.rubens.model.Enum.StatusRent;
-import com.bookstore.rubens.model.io.request.BookRequest;
 import com.bookstore.rubens.model.RentModel;
+import com.bookstore.rubens.model.io.request.BookRequest;
 import com.bookstore.rubens.repository.BookRepository;
 import com.bookstore.rubens.repository.PublisherRepository;
 import com.bookstore.rubens.repository.RentRepository;
@@ -35,13 +34,13 @@ public class BookModelValidator {
     private void validatePublisher(Long publisher) {
 
         if (publisherRepository.findById(publisher).isEmpty()){
-            throw new BusinessException("Publisher not found");
+            throw new BusinessException("Editora não encontrada");
         }
     }
 
     private void validateName(String name) {
         bookRepository.findByName(name).ifPresent(bookModel -> {
-            throw new BusinessException("Book with this name already registered");
+            throw new BusinessException("Um livro com esse nome já foi registrado");
         });
     }
 
@@ -50,7 +49,7 @@ public class BookModelValidator {
 
         for (RentModel rentModel : rents) {
             if (rentModel.getStatus().equals(StatusRent.LENDO)) {
-                throw new BusinessException("there are rentals registered with this book");
+                throw new BusinessException("Este livro está sendo alugado no momento");
             }
         }
     }

@@ -35,6 +35,9 @@ public class BookModel {
     @Column(nullable = false)
     private Integer amount;
 
+    @Column
+    private Integer leaseQuantity;
+
     @JsonManagedReference
     @OneToMany(mappedBy = "book",cascade = CascadeType.ALL, fetch = FetchType.LAZY )
     private List<RentModel> rents;

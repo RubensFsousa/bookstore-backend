@@ -35,7 +35,9 @@ public class BookServiceImpl implements BookService {
     @Override
     public void create(BookRequest bookRequest) {
         bookValidator.validateForCreate(bookRequest);
-        bookRepository.save(bookMapper.toBooksModel(bookRequest));
+        BookModel bookModel = bookMapper.toBooksModel(bookRequest);
+        bookModel.setLeaseQuantity(0);
+        bookRepository.save(bookModel);
     }
 
     @Override
