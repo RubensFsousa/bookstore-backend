@@ -17,10 +17,6 @@ public class PublisherMapper {
         return mapper.map(publisher, PublisherModel.class);
     }
 
-    public PublisherRequest toPublisherRequest(PublisherModel publisher){
-        return mapper.map(publisher, PublisherRequest.class);
-    }
-
     public PublisherResponse toPublisherResponse(PublisherModel publisher){
         return mapper.map(publisher, PublisherResponse.class);
     }

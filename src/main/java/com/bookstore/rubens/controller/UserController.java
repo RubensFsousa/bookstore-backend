@@ -1,6 +1,5 @@
 package com.bookstore.rubens.controller;
 
-import com.bookstore.rubens.model.Mapper.UserMapper;
 import com.bookstore.rubens.model.io.request.UserRequest;
 import com.bookstore.rubens.model.io.response.UserResponse;
 import com.bookstore.rubens.service.UserService;
@@ -22,9 +21,6 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-
-    @Autowired
-    private UserMapper userMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

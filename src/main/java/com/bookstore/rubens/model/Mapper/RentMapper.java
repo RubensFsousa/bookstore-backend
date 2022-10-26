@@ -31,11 +31,6 @@ public class RentMapper {
         return mapper.map(rent, RentModel.class);
     }
 
-
-    public RentRequest toRentRequest(RentModel rent){
-        return mapper.map(rent, RentRequest.class);
-    }
-
     public RentResponse toRentResponse(RentModel rent){
         return mapper.map(rent, RentResponse.class);
     }

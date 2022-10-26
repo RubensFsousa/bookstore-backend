@@ -31,10 +31,6 @@ public class BookMapper {
         return mapper.map(book, BookModel.class);
     }
 
-    public BookRequest toBooksRequest(BookModel book){
-        return mapper.map(book, BookRequest.class);
-    }
-
     public BookResponse toBooksResponse(BookModel book){
         return mapper.map(book, BookResponse.class);
     }

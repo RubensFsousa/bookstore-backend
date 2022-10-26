@@ -1,6 +1,5 @@
 package com.bookstore.rubens.controller;
 
-import com.bookstore.rubens.model.Mapper.PublisherMapper;
 import com.bookstore.rubens.model.io.request.PublisherRequest;
 import com.bookstore.rubens.model.io.response.PublisherResponse;
 import com.bookstore.rubens.service.PublisherService;
@@ -24,9 +23,6 @@ public class PublisherController {
 
     @Autowired
     private PublisherService publisherService;
-
-    @Autowired
-    private PublisherMapper publisherMapper;
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)

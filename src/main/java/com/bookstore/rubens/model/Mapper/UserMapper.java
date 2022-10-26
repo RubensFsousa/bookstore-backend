@@ -18,13 +18,8 @@ public class UserMapper {
         return mapper.map(rent, UserModel.class);
     }
 
-    public UserRequest toLogsRequest(UserModel rent){
-        return mapper.map(rent, UserRequest.class);
-    }
-
     public UserResponse toUserResponse(UserModel rent){
         return mapper.map(rent, UserResponse.class);
     }
-
 
 }

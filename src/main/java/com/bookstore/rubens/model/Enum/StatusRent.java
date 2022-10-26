@@ -4,9 +4,9 @@ import lombok.Getter;
 
 @Getter
 public enum StatusRent {
-    ENTREGUE ("ON TIME"),
-    ATRASADO ("DELAYED"),
-    LENDO ("IN PROGRESS");
+    ENTREGUE ("ENTREGUE"),
+    ATRASADO ("ATRASADO"),
+    LENDO ("LENDO");
 
     private final String status;
 
